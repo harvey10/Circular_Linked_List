@@ -13,6 +13,7 @@ void CList::disp() {
     current = current->next;
   }
   cout << setfill('-') << setw(35) << "-" << endl;
+  cout << setfill(' ');
 }
 
 void CList::shiftRight() {
@@ -41,7 +42,7 @@ void CList::addElement(const string data, const int nextID) {
     newNode->next = current;
     newNode->back = beforeCurrent;
     current->back = newNode;
-    beforeCurrent->next - newNode;
+    beforeCurrent->next = newNode;
   }
   count++;
 }
@@ -56,7 +57,7 @@ void CList::removeElement(int searchID) {
     else {
       while (searchCount <= count && !found) {
 	if (current->id == searchID)
-	  found - true;
+	  found = true;
 	else {
 	  current = current->next;
 	  searchCount++;
