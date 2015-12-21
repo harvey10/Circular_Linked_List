@@ -49,29 +49,30 @@ void CList::addElement(const string data, const int nextID) {
 
 void CList::removeElement(int searchID) {
   CElem *trailCurrent;
+  CElem *nodeRemove;
   int searchCount = 0;
   bool found = false;
   try {
     if (isEmpty())
       cout << "List is empty. Nothing to delete." << endl;
     else {
+      nodeRemove = first;
       while (searchCount <= count && !found) {
-	if (current->id == searchID)
+	if (nodeRemove->id == searchID)
 	  found = true;
 	else {
-	  current = current->next;
+	  nodeRemove = nodeRemove->next;
 	  searchCount++;
 	}
       }
-      if (current->id != searchID)
+      if (nodeRemove->id != searchID)
 	throw searchID;
-      else if (current->id == searchID) {
-	trailCurrent = current->back;
-	trailCurrent->next = current->next;
-	current->next->back = trailCurrent;
+      else if (nodeRemove->id == searchID) {
+	trailCurrent = nodeRemove->back;
+	trailCurrent->next = nodeRemove->next;
+	nodeRemove->next->back = trailCurrent;
 	count--;
-	delete current;
-	current = trailCurrent->next;
+	delete nodeRemove;
       }
       else {
 	throw searchID;
